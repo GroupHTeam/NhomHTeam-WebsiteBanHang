@@ -48,7 +48,7 @@ var sanPhams = [
 
     new SanPham({
         imagePath: '../images/quan/quan_dai/quan1.jpg',
-        tenSanPham: 'Quần thun nữ Jogger Baggy Thể thao thời trang',
+        tenSanPham: 'Quần thun nữ Jogger Baggy ',
         description: 'Quần thun nữ Jogger Baggy Thể thao thời trang !!!',
         gia: 25000,
         maSanPham: 'Q001',
@@ -75,7 +75,7 @@ var sanPhams = [
 
     new SanPham({
         imagePath: '../images/quan/quan_dai/quan4.jpg',
-        tenSanPham: 'Quần thun nữ Jogger Baggy Thể thao thời trang',
+        tenSanPham: 'Quần thun nữ Jogger Baggy ',
         description: 'Quần thun nữ Jogger Baggy Thể thao thời trang !!!',
         gia: 25000,
         maSanPham: 'Q004',
@@ -84,7 +84,7 @@ var sanPhams = [
 
     new SanPham({
         imagePath: '../images/quan/quan_dai/quan5.jpg',
-        tenSanPham: 'Quần thun lững ôm Legging Thời trang',
+        tenSanPham: 'Quần thun lững ôm Legging ',
         description: 'Quần thun nữ Jogger Baggy Thể thao thời trang !!!',
         gia: 25000,
         maSanPham: 'Q005',

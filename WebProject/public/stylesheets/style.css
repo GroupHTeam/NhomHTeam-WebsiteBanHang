@@ -157,9 +157,38 @@ nav .navbar-collapse a {
   color: #7f7f7f;
 }
 
+.thumbnail{
+  margin-top: 30px;
+}
+
 .price {
   font-size: 16px;
   font-weight: bold;
+}
+
+#chitiet{
+  margin-top: 40px;
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.detail{
+  margin-top: 20px;
+  border: solid 1px black;
+  margin-bottom: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#img-detail{
+margin-left: 200px;
+}
+
+#caption-detail{
+  margin-left: 500px;
 }
 
 .fixDisplay1 {

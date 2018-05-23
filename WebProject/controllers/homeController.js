@@ -11,12 +11,14 @@ exports.index = function(req, res, next) {
   SanPham.find(function(err, docs){
     var sanPhamChunks =[];
     var chunkSize = 4;
-    for(var i=0;i<docs.length;i += chunkSize){
+    for(var i=0;i<4;i += chunkSize){
       sanPhamChunks.push(docs.slice(i, i+ chunkSize));
     }
     res.render('frontend/home/index', { title: 'WebProject', sanPhams: sanPhamChunks });
   });
 };
+
+
 
 //exports.ao = function(req, res, next) {
 //  SanPham.find(function(err, docs){

@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h3 class="page-header">ĐĂNG KÍ TÀI KHOẢN</h3> 
+        {{#if mail}}
+            <div class="alert alert-danger">Email đã được đăng kí.</div> 
+        {{/if}}
+        {{#if errors}} {{#each errors}}
+            <div class="alert alert-danger">{{msg}}</div>
+        {{/each}} {{/if}}
+        <form action="/user/signup" method="post">
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Đăng nhập">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="matkhau" name="matkhau" placeholder="Mật khẩu">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="ten" name="ten" placeholder="Họ và tên">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="sdt" name="sdt" placeholder="Số điện thoại">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="diachi" name="diachi" placeholder="Địa chỉ">
+            </div>
+            <div class="form-group">
+                <input type="datetime" class="form-control" id="ngaysinh" name="ngaysinh" placeholder="Ngày sinh">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="gioitinh" name="gioitinh" placeholder="Giới tính">
+            </div>
+            <p><i>Bằng đăng kí, đăng nhập bạn đã đồng ý chấp nhận những điều khoản của chúng tôi.</i></p>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <button type="submit" class="btn btn-primary">Đăng kí</button>
+        </form>
+    </div>
+</div>

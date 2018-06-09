@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        {{#if success_msg}}
+        <div class="alert alert-success">{{success_msg}}</div>
+        {{/if}} {{#if error_msg}}
+        <div class="alert alert-danger">{{error_msg}}</div>
+        {{/if}} {{#if error}}
+        <div class="alert alert-danger">{{error}}</div>
+        {{/if}}
+        <h3 class="page-header">ĐĂNG NHẬP TÀI KHOẢN</h3>
+        <form method="post" action="/user/signin">
+            <div class="form-group">
+                <input type="email" class="form-control" name="username" placeholder="Email" value={{this.email}}>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Mật khẩu" value={{this.matKhau}}>
+            </div>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}"> 
+            <button type="submit" class="btn btn-default">Đăng nhập</button>
+            <h6 style="color: red" >Bạn chưa có tài khoản?</h6> 
+            <a href="/user/signup"><span style="color:#090909">Đăng kí</span></a>
+        </form>
+    </div>
+</div>

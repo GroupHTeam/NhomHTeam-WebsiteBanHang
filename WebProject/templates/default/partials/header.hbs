@@ -3,18 +3,20 @@
 			<div id="header1">
 				<img style="float: left" src="images/call.png" >
 				<a id="call" style="float: left"><span style="color:red">Hotline: 1800-123-456</span></a>
-				{{#if user}}
-					<a id="login" style="float: right;" href="/user/signout"><span style="color:#090909">Đăng xuất</span></a>
-					<img style="float: right" src="images/login.png">
+				{{#if user}}				
+					<a id="login" style="float: right; color:black" href="/user/signout" >
+						<span class="glyphicon glyphicon-log-out"> </span>
+						<span> Đăng xuất</span></a>
 					{{#each user}}
-					<a id="contact" style="float: right;" href="/user/profile/{{this._id}}"><span style="color:#090909">{{this.email}}</span></a>
+					<a id="contact" style="float: right; color: black" href="/user/profile/{{this._id}}" >
+						<span class="glyphicon glyphicon-user"></span>
+						<span style="color:#090909"> {{this.email}}</span></a>
 					{{/each}}
-					<img style="float: right" src="images/contact.png">
 				{{else}}
-					<a id="login" style="float: right;" href="/user/signin"><span style="color:#090909">Đăng nhập</span></a>
+					<a id="login" style="float: right;" href="/user/signin"><span style="color:#090909"> Đăng nhập</span></a>
 					<img style="float: right" src="images/login.png">
 					<a id="contact" style="float: right;" href="/user/signup"><span style="color:#090909">Đăng kí</span></a>
-					<img style="float: right" src="images/contact.png">
+					<img style="float: right" src="images/contact.png">					
 				{{/if}}
 			</div>
 			<div id="header2">

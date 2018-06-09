@@ -25,7 +25,7 @@ router.get('/ao-thoi-trang',aoThoiTrang_controller.sanPham_list); // Nó chạy 
 router.get('/quan-', quan_controller.sanPham_list);
 router.get('/vay-dam', dam_controller.sanPham_list);
 router.get('/giay-', giay_controller.sanPham_list);
-router.get('/chitietsanpham/:id', ensureAuthenticated,chitietsanpham_controller.chitietsanpham);
+router.get('/chitietsanpham/:id', chitietsanpham_controller.chitietsanpham);
 
 router.get('/about', function(req, res) {
     // res.render('/'. {output:req.params.id});
@@ -45,12 +45,13 @@ router.post('/user/signin',
 
         res.redirect('/');
     });
-router.get('/user/profile/:id', thongTin_controller.infoaccout_get);
+router.get('/user/profile/:id', ensureAuthenticated,thongTin_controller.infoaccout_get);
+router.get('/user/profile/lich-su-giao-dich/:id', ensureAuthenticated,thongTin_controller.giaodich);
 function ensureAuthenticated(req, res, next){
     if(req.isAuthenticated()){
         return next();
     } else {
-        //req.flash('error_msg','You are not logged in');
+        req.flash('error_msg','Bạn chưa đăng nhập tài khoản');
         res.redirect('/user/signin');
     }
 }

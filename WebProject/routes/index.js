@@ -34,19 +34,21 @@ router.get('/user/signup', khachhang_controller.sign_up);
 router.get('/user/signin', khachhang_controller.sign_in);
 router.post('/user/signup', khachhang_controller.dangki);
 router.get('/user/signout', khachhang_controller.sign_out);
-//router.post('/user/signin', khachhang_controller.dangnhap);
-router.post('/user/signin',
+router.get ('/user/profile/:id', ensureAuthenticated,thongTin_controller.infoaccout_get);
+router.get('/user/profile/lich-su-giao-dich/:id', ensureAuthenticated,thongTin_controller.giaodich);
+router.post('/user/profile/:id',ensureAuthenticated,thongTin_controller.capnhat);
+router.get('/forgot',khachhang_controller.quenMK);
+router.post('/forgot',khachhang_controller.forgot);
+router.get('/reset/:token', khachhang_controller.reset);
+router.post('/reset/:token', khachhang_controller.thaydoi)
+/*router.post('/user/signin',
     passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/user/signin',
-        failureFlash: true
+        failureFlash: true,
     }),
-    function(req, res) {
-
-        res.redirect('/');
-    });
-router.get('/user/profile/:id', ensureAuthenticated,thongTin_controller.infoaccout_get);
-router.get('/user/profile/lich-su-giao-dich/:id', ensureAuthenticated,thongTin_controller.giaodich);
+);*/
+router.post('/user/signin',khachhang_controller.dangnhap);
 function ensureAuthenticated(req, res, next){
     if(req.isAuthenticated()){
         return next();

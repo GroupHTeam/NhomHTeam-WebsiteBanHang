@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h3 class="page-header">QUÊN MẬT KHẨU</h3>
+        {{#if errors}}
+        <div class="alert alert-danger">Email chưa được đăng kí</div>
+        {{/if}}
+         {{#if error}}
+        <div class="alert alert-success">{{error}}</div>
+        {{/if}}{{#if success_msg}}
+        <div class="alert alert-success">{{success_msg}}</div>
+        {{/if}}
+        <form method="post">
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div>
+                <input type="hidden" name="_csrf" value="{{csrfToken}}"> 
+                <button type="submit" class="btn btn-button">Gửi</button>
+                <a href="/user/signin"><button type="button" class="btn btn-button">Hủy</button></a>
+            </div>
+        </form>
+    </div>
+</div>

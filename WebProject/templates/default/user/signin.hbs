@@ -10,13 +10,14 @@
         <h3 class="page-header">ĐĂNG NHẬP TÀI KHOẢN</h3>
         <form method="post" action="/user/signin">
             <div class="form-group">
-                <input type="email" class="form-control" name="username" placeholder="Email" value={{this.email}}>
+                <input type="email" class="form-control" name="username" placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Mật khẩu" value={{this.matKhau}}>
+                <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
             </div>
             <input type="hidden" name="_csrf" value="{{csrfToken}}"> 
             <button type="submit" class="btn btn-default">Đăng nhập</button>
+            <a href="/forgot"><span style="color:#090909">Quên mật khẩu</span></a>
             <h6 style="color: red" >Bạn chưa có tài khoản?</h6> 
             <a href="/user/signup"><span style="color:#090909">Đăng kí</span></a>
         </form>

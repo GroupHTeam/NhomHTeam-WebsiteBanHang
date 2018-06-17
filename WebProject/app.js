@@ -15,7 +15,7 @@ var settings=require('./config/settings');
 var database=require('./config/database');
 var indexRouter = require('./routes/index');
 var catalog = require('./routes/catalog');  //Import routes for "catalog" area of site
-
+var userRouter=require('./routes/user');
 
 var app = express();
 
@@ -84,7 +84,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 //app.use('/users', users);
 app.use('/catalog', catalog); 
-
+app.use('/user/forgot',userRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });

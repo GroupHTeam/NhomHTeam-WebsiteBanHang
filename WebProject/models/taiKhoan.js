@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 var taiKhoanSchema = new Schema({
     email: {type: String, required: true, max: 100},
     matKhau: {type: String, required: true, max: 100},
-    resetPasswordToken: {type: String},
-    resetPasswordExpires:{type:Date}
+    resetPasswordToken: {type: String, required: true},
+    resetPasswordExpires:{type:Date, required: true}
 });
 var User=module.exports = mongoose.model('taiKhoan', taiKhoanSchema)
 
@@ -18,7 +18,6 @@ module.exports.createUser = function(newUser, callback){
       });
   });
 }
-
 module.exports.getUserByUsername = function(username, callback){
   var query = {email: {
                 "$regex": "^" + username + "\\b",

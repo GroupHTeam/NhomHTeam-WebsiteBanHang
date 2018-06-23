@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: gray;
 }
 
 header {
@@ -25,6 +25,21 @@ header {
   font-size: 16px;
   padding-right: 10px;
   border-right: solid 1px #c0c0c0;
+}
+
+#account{
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+.dropdown{
+  padding-top: 6px;
+}
+.dropdown-menu{
+  font-weight: bold;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
 }
 
 #login {
@@ -149,6 +164,12 @@ nav .navbar-collapse a {
   vertical-align: middle;
 }
 
+#navigation{
+      background-color: #cc99ff;
+    margin-right: -31px;
+    font-weight: bold;
+}
+
 .thumbnail img {
   max-height: 150px;
 }
@@ -168,14 +189,11 @@ nav .navbar-collapse a {
 
 #chitiet{
   margin-top: 40px;
-  color: red;
-  font-weight: bold;
-  font-size: 20px;
+  margin-left: 323px;
 }
 
 .detail{
   margin-top: 20px;
-  border: solid 1px black;
   margin-bottom: 40px;
   margin-left: 100px;
   margin-right: 100px;
@@ -220,11 +238,11 @@ margin-left: 200px;
 .block-content .nav-tabs>li a:hover {
   background: transparent !important;
   border: none;
-  color: #333333;
+  color: red;
 }
 
 #home {
-  padding-top: 10px;
+  padding-top: 18px;
 }
 
 #menu1 {
@@ -269,6 +287,10 @@ color: white;
 font-weight: bold;
 }
 
+.carousel-control.right {
+  right: 30px;
+}
+
 
 /************************Footer**********************/
 #icon-footer{
@@ -276,7 +298,7 @@ font-weight: bold;
 }
 
 .fixDisplay3{
-	margin-top: 0px;
+	margin-top: 20px;
 	background-color:  #1a1a1a;
 	padding-top: 15px;
 }
@@ -285,3 +307,68 @@ font-weight: bold;
 	font-style: italic;
 }
 /****************************************************/
+
+#bd{
+  margin-left: 0px;
+    margin-right: -29px;
+    /* background-color:#ffb3b3; */
+    border: solid 1px;
+}
+
+#kiemtra-form{
+  margin-bottom: 20px;
+}
+#huy{
+  padding-left: 50px;
+}
+#buy{
+  padding-left: 200px;
+}
+
+#title-DATHANG{
+  padding-left: 100px;
+}
+
+#title-GIOHANG{
+  padding-left: 360px;
+}
+
+.label-success {
+  background-color: black;
+  padding-left: 10px;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  /* padding-left: 14px; */
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+#mua{
+  margin-left: -80px;
+}
+
+.panel-footer {
+  background-color:#b3b3b3;
+}
+
+.list-group-item:last-child {
+  background-color: #ffff99;
+}
+
+#themvaogio{
+  margin-top: 140px;
+}

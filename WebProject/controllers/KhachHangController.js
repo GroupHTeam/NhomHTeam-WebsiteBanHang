@@ -1,3 +1,4 @@
+var csrf = require('csurf');
 var express = require('express');
 var expressValidator = require('express-validator');
 var router = express.Router();
@@ -7,9 +8,10 @@ var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
-var KhachHang = require('../models/khachHang');
-var User = require('../models/taiKhoan');
+//var KhachHang = require('../models/khachHang');
+var User = require('../models/khachHang');
 var bcrypt=require('bcryptjs');
+
 
 exports.sign_up = function(req, res, next) {
     res.render('../default/user/signup', { title: 'Đăng kí', csrfToken: req.csrfToken() });
@@ -52,27 +54,19 @@ exports.dangki = function(req, res, next) {
                 res.render('../default/user/signup', {title: 'Đăng kí',
                      mail:mail,csrfToken: req.csrfToken()});
             } else {
-                var newKhachHang = new KhachHang({
+                var newKhachHang = new User({
                     tenKhachHang: ten,
                     gioiTinh: gioitinh,
                     ngaySinh: ngaysinh,
                     diaChi: diachi,
                     email: email,
-                    soDienThoai: sdt
-                });
-                KhachHang.createKhachHang(newKhachHang, function(err, khachHang) {
-                    if (err) throw err;
-
-                });
-
-                var newUser = new User({
-                    email: email,
+                    soDienThoai: sdt,
                     matKhau: matkhau
-                })
-                User.createUser(newUser, function(err, taiKhoan) {
+                });
+                User.createKhachHang(newKhachHang, function(err, khachHang) {
                     if (err) throw err;
 
-                })
+                });
 
                 req.flash('success_msg', 'Bạn đã đăng kí thành công và hãy đăng nhập bây giờ');
                 res.redirect('/user/signin');
@@ -92,7 +86,7 @@ passport.use(new LocalStrategy(
             User.comparePassword(password, user[0].matKhau, function(err, isMatch) {
                 if (err) throw err;
                 if (isMatch) {
-                    return done(null, user);
+                        return done(null, user);                  
                 } else {
                     return done(null, false, {message: 'Mật khẩu chưa chính xác'});
                 }
@@ -153,13 +147,13 @@ exports.forgot = function(req, res, next) {
             var transport = nodemailer.createTransport(smtpTransport({
                 service:'Gmail',
                 auth: {
-                    user: 'truongthihien1304@gmail.com',
-                    pass: 'truonghien02'
+                    user: 'hanhkim130497@gmail.com',
+                    pass: 'lethikimhanh'
                 }
             }));
             var mailOptions = {
                 to: user.email,
-                from: '"HTeamShop"<truonghien1304@gmail.com>',
+                from: '"HTeamShop"<hanhkim130497@gmail.com>',
                 subject: 'Node.js Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -190,6 +184,7 @@ exports.reset=function(req,res, next){
 };
 
 exports.thaydoi = function(req, res, next) {
+    console.log('vao day')
     async.waterfall([
         function(done) {
             User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
@@ -208,15 +203,15 @@ exports.thaydoi = function(req, res, next) {
                 } else {
                     user.resetPasswordToken = undefined;
                     user.resetPasswordExpires = undefined;
-                    User.createUser(user, function(err, taiKhoan) {
+                    User.createKhachHang(user, function(err, taiKhoan) {
                         if (err) throw err;
                     });
-                }
-                 user.save(function(err) {
+                       user.save(function(err) {
                         req.logIn(user, function(err) {
                             done(err, user);
                         });
                     });
+                }
             })
         }
     ], function(err) {

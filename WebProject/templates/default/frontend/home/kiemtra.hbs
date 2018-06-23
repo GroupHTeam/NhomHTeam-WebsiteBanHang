@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-sm-6 col-md-7 col-md-offset-3 col-sm-offset-6">
+        <div id="title-DATHANG">
+            <h1>THÔNG TIN GIAO HÀNG</h1>
+            <h4>Tổng tiền: ${{total.totalPrice}}</h4>
+        </div>
+        <form action="/" method="POST" id="kiemtra-form">
+            {{#each user}}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label form="name">Ho Ten</label>
+                    <input type="text" id="name" class="form-control" required name="name" value="{{this.tenKhachHang}}">
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label form="address">Dia Chi</label>
+                    <input type="text" id="address" class="form-control" required name="address"  value="{{this.diaChi}}">
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label form="phone">SDT</label>
+                    <input type="text" id="phone" class="form-control" required name="phone"  value="{{this.soDienThoai}}">
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        <div id="mua">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <a id="buy"><button type="submit" class="btn btn-success">Mua Ngay</button></a>
+        <a id = "huy" href="/"> <button type="button" class="btn btn-default">Hủy Đặt Hàng</button></a>  
+        </div>
+        </form>
+    </div>
+</div>
+
+

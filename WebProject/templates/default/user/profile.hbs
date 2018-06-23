@@ -1,14 +1,7 @@
 <div class="row">
     <div class="col-md-4">
-        <h3 class="page-header">THÔNG TIN TÀI KHOẢN</h3> {{#each accout}}
-        <div style="margin:15px">
-            <a id="profile" href="/user/profile/{{this._id}}" style="color: black"><span class="glyphicon glyphicon-th-list"></span><span> THÔNG TN TÀI KHOẢN</span></a>
-        </div>
-        <div style="margin:15px">
-            <a id="profile" href="/user/profile/lich-su-giao-dich/{{this._id}}" style="color: black"><span class="glyphicon glyphicon-user"></span><span> LỊCH SỬ GIAO DỊCH</span></a>
-        </div>
-        {{/each}}
     </div>
+    <div class="row">
     <div class="col-md-8">
         {{#if customers}} 
         <h3 class="page-header">THÔNG TIN TÀI KHOẢN</h3>
@@ -21,29 +14,31 @@
                     <input type="text" value="{{this.tenKhachHang}}" class="form-control" id="ten" name="ten">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="field-120334">Email</label>
-                    <span class="desc"></span>
-                    <input type="text" value="{{this.email}}" class="form-control" id="mail" name="mail">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="field-120334">Ngày sinh</label>
-                    <span class="desc"></span>
-                    <input type="text" value="{{this.ngaySinh}}" class="form-control" id="ngaysinh" name="ngaysinh">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="field-120334">Giới tính</label>
-                    <span class="desc"></span>
-                    <input type="text" value="{{this.gioiTinh}}" class="form-control" id="gioitinh" name="gioitinh">
-                </div>
-                <div class="form-group">
                     <label class="form-label" for="field-120334">Số điện thoại</label>
                     <span class="desc"></span>
-                    <input type="text" value="{{this.soDienThoai}}" class="form-control" id="SDT" name="SDT">
+                    <input type="tel" value="{{this.soDienThoai}}" class="form-control" id="SDT" name="SDT">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="field-120334">Địa chỉ</label>
                     <span class="desc"></span>
                     <input type="text" value="{{this.diaChi}}" class="form-control" id="diachi" name="diachi">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="field-120334">Email</label>
+                    <span class="desc"></span>
+                    <input type="text" value="{{this.email}}" class="form-control" id="mail" name="mail" disabled>
+                </div>
+                 <div class="row">
+                    <div class="form-group col-md-6" style="float: left">
+                        <label class="form-label" for="field-120334">Ngày sinh</label>
+                        <span class="desc"></span>
+                        <input type="text" value="{{this.ngaySinh}}" class="form-control" id="ngaysinh" name="ngaysinh">
+                    </div>
+                    <div class="form-group col-md-6 " style="float: right">
+                        <label class="form-label" for="field-120334">Giới tính</label>
+                        <span class="desc"></span>
+                        <input type="text" value="{{this.gioiTinh}}" class="form-control" id="gioitinh" name="gioitinh">
+                    </div>
                 </div>
                 {{/each}}
                     <input type="hidden" name="_csrf" value="{{csrfToken}}">
@@ -51,25 +46,8 @@
                    <a href="/"> <button type="button" class="btn btn-default">Hủy</button>   </a>           
             </div>
         </form>
-        {{else}}
-        <h3 class="page-header">LỊCH SỬ GIAO DỊCH</h3>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Mã đơn hàng</th>
-                    <th>Ngày đặt hàng</th>
-                    <th>Tổng thanh toán</th>
-                    <th>Trạng thái</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each ls}}
-                <tr>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
         {{/if}}
+    </div>
+</div>
     </div>
 </div>

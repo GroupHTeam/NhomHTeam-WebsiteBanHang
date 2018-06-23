@@ -1,45 +1,49 @@
 var express = require('express');
-var expressValidator = require('express-validator');
 var router = express.Router();
 
-var Accout = require('../models/taiKhoan');
 var Customers = require('../models/khachHang');
-var lichsu=require ('../models/lichSu');
+var Order = require('../models/order');
+var Cart = require('../models/cart');
+var khachHang = require('../models/khachHang');
 
-exports.infoaccout_get = function(req, res, next) {
-    Accout.find({ _id: req.params.id }).then(function(data) {
-        Customers.find({ email: data[0].email }).then(function(data1) {
-            res.render('../default/user/profile', { title: "Thông tin tài khoản", csrfToken: req.csrfToken(), customers: data1, accout: data});
-        });
-    });
+
+exports.infoaccout_get = function(req, res,next){
+	Customers.find({_id: req.params.id}).then( function(data){	
+		var i = req.params.id;
+		console.log(i);
+		res.render('../default/user/profile',{ title: "Thong tin tai khoan", customers: data, csrfToken: req.csrfToken()});
+	});
 };
 
-exports.giaodich=function(req, res, next){
-	Accout.find({ _id: req.params.id }).then(function(data) {
-        lichsu.find({ maKH: data[0].email }).then(function(data1) {
-            res.render('../default/user/profile', { title: "Lịch sử giao dịch", ls:data1, accout: data});
-        });
-    });
+
+exports.dathang=function(req, res, next){
+	Order.find({khachHang: req.khachHang}, function(err, orders){
+		if(err){
+			return res.write('Error!');
+		}
+		var cart;
+		orders.forEach(function(order){
+			cart = new Cart(order.cart);
+			order.items = cart.generateArray();
+		});
+		console.log(orders);
+		res.render('../default/user/lichsudathang',{ orders: orders});
+	});
 };
 
 exports.capnhat = function(req, res, next) {
-    Accout.find({ _id: req.params.id }).then(function(data) {
-        Customers.updateOne({ email: data[0].email }, {
+    Customers.updateOne({ _id: req.params.id },{
             $set: {
 
                 tenKhachHang: req.body.ten,
                 ngaySinh: req.body.ngaysinh,
-                gioiTinh: req.body.gioitinh,
+                gioiTinh: req.body.gioitinh, 
                 diaChi: req.body.diachi,
                 soDienThoai: req.body.SDT
             }
-        }).then(function(data1) {
-            Customers.find({email: data[0].email}).then(function(data2){
-                res.render('../default/user/profile', { title: "Thông tin tài khoản", csrfToken: req.csrfToken(), customers: data2, accout: data });
+        }).then(function(data) {
+        	Customers.find({_id: req.params.id}).then(function(data1){
+                res.render('../default/user/profile', { title: "Thông tin tài khoản", csrfToken: req.csrfToken(), customers: data1});
             })
-            
         })
-    })
-
-
-}
+    }

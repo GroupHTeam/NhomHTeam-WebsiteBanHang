@@ -15,9 +15,11 @@ var User1=require('../models/accoutUser')
 
 
 exports.sign_up = function(req, res, next) {
+    req.logOut();
     res.render('../default/user/signup', { title: 'Đăng kí' });//, csrfToken: req.csrfToken()
 };
 exports.sign_in = function(req, res, next) {
+    req.logOut();
     res.render('../default/user/signin', { title: 'Đăng nhập'});///
 };
 
@@ -83,7 +85,7 @@ passport.use(new LocalStrategy(
             if (user.length == 0) {
                 User1.getUser(username, password, function(err, user1) {
                     if (err) throw err;
-                    if (user1.length == 0 || user1.isAdmin==false) {
+                    if (user1.length == 0) {
                         return done(null, false, { message: 'Tài khoản chưa đúng!' });
                     } else {
                         return done(null,user1);
@@ -128,7 +130,8 @@ exports.sign_out= function (req, res,next) {
 };
 
 exports.quenMK=function(req, res, next){
-    res.render('../default/user/forgot',{tittle: 'Quên mật khẩu'});///
+    req.logout();
+    res.render('../default/user/forgot',{tittle: 'Quên mật khẩu'});
 }
 
 exports.forgot = function(req, res, next) {
@@ -211,9 +214,12 @@ exports.thaydoi = function(req, res, next) {
                 } else {
                     user.resetPasswordToken = undefined;
                     user.resetPasswordExpires = undefined;
-                    User.createUser(user, function(err, taiKhoan) {
+                    User.createKhachHang(user, function(err, taiKhoan) {
                         if (err) throw err;
                     });
+                    req.logIn(user, function(err) {
+                        done(err, user);
+                      });
                 }
             })
         }

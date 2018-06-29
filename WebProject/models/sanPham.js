@@ -9,6 +9,7 @@ var sanPhamSchema = new Schema(
       tenSanPham: {type: String, required: true},
       gia: {type: Number, required: true},
       maLoai: {type:String , require:true},
+      solanxem:{type:Number, default:0},
       comments: [
       {
          type: mongoose.Schema.Types.ObjectId, ref: "Comment"

@@ -28,15 +28,14 @@ exports.sua_get = function(req, res, next) {
 
 
 exports.them_post = function(req, res, next) {
- 
-  req.check('name', 'Tên loại không được rỗng').notEmpty();
-  req.check('ma', 'Mã loại là kí tự duy nhất').isLength({min:1, max:1});
-  req.check('ma', 'Mã loại không được rỗng').notEmpty();
-  
+  //res.render('admin/cate/them');
+  //req.checkBody('name', 'Giá Trị không được rổng').notEmpty();
+  //req.checkBody('name', 'Name 5 đến 32 ký tự').isLength({min:3, max:32});
+  //console.log('co vao day k?');
   var errors = req.validationErrors();
 	if (errors) {
 	  res.render('../admin/cate/them',{errors : errors , layout:'../../admin/layouts/layout.hbs'}); ///
-	}else{
+	}
 
 	var cate = new Cate({
 		name 			: req.body.name,
@@ -44,10 +43,10 @@ exports.them_post = function(req, res, next) {
 	});
 
 	cate.save().then(function(){
-		req.flash('success_msg', 'Đã Thêm Thành Công');
+		///req.flash('success_msg', 'Đã Thêm Thành Công');
+		console.log("Thêm cate thành công");
 		res.redirect('/admin/cate/them-cate.html'); 
 	});
-}
 }
 
 exports.xoa_get =  function (req, res) {
@@ -68,9 +67,9 @@ exports.sua_get = function(req, res, next){
 
 exports.sua_post =  function (req, res) {
 	//req.checkBody('name', 'Tên không được rổng').notEmpty();
-	 req.check('name', 'Tên loại không được rỗng').notEmpty();
-  	req.check('ma', 'Mã loại là kí tự duy nhất').isLength({min:1, max:1});
- 	 req.check('ma', 'Mã loại không được rỗng').notEmpty();
+	//req.checkBody('hinh', 'Hình không được rổng').notEmpty();
+	//req.checkBody('gia', 'giá phải là số').isInt();
+	//req.checkBody('des', 'Chi tiết không được rổng').notEmpty();
 
     var errors = req.validationErrors();
 	if (errors) {
@@ -103,7 +102,7 @@ exports.sua_post =  function (req, res) {
 			data.save();
 			console.log(data);
 				//req.flash('success_msg', 'Đã Sửa Thành Công');
-			res.redirect('/admin/cate/danh-sach.html');
+			res.redirect('/cate/danh-sach.html');
 			//})
 		})
 	}

@@ -1,5 +1,4 @@
-var taiKhoan = require('../models/taiKhoan');
-var khachHang = require('../models/khachHang');
+
 var sanPham = require('../models/sanPham');
 var gioHang = require('../models/gioHang');
 //var loaiSanPham = require('../models/loaiSanPham');
@@ -12,16 +11,30 @@ var quanTriVien = require('../models/quanTriVien');
 //         res.render('frontend/home/chitietsanpham', {sanphamct: data});
 //     });
 // };
-exports.chitietsanpham = function (req, res) {
-	sanPham.find({_id:req.params.id}).populate("comments").exec(function(err, foundSanPham){
-	        if(err){
-	            console.log(err);
-	        } else {
-	            console.log(foundSanPham)
-	            //render show template with that campground
-	            res.render("frontend/home/chitietsanpham", {sanphamct: foundSanPham});
-	        }
-	    });
-	};
+exports.chitietsanpham = function(req, res) {
+    sanPham.find({ _id: req.params.id }).populate("comments").exec(function(err, foundSanPham) {
+        if (err) {
+            console.log(err);
+        } else {
+            var solan = foundSanPham[0].solanxem + 1;
+            sanPham.updateOne({ _id: req.params.id }, {
+                $set: {
+                    solanxem: solan
+                }
+            }).then(function(dt) {
+            	sanPham.find({_id: req.params.id}).then(function(sp){
+                    var sanPhamChunks =[];
+                    var chunkSize = 1;
+                    for(var i=0;i<sp[0].comments.length;i += chunkSize){
+                      sanPhamChunks.push(sp[0].comments.slice(i, i+ chunkSize));
+                    }
+            		res.render("frontend/home/chitietsanpham", { sanphamct: foundSanPham, com:sanPhamChunks});
+            	})
+                
+            })
+
+        }
+    });
+};
 
 

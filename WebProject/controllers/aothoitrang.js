@@ -15,6 +15,17 @@ exports.sanPham_list = function(req, res) {
   });
 };
 
+exports.timkiemtheogia10 = function(req, res){
+	sanPham.find({gia : 15 }, function(err, spgia){
+		var sanPhamChunks =[];
+    var chunkSize = 4;
+    for(var i=0;i<spgia.length;i += chunkSize){
+      sanPhamChunks.push(spgia.slice(i, i+ chunkSize));
+    }
+		res.render('frontend/home/theogia10', { title: 'Áo thời trang', spgia10: sanPhamChunks});
+	});
+};
+
 //router.post ('/:id', function(req, res, next){
 //	var id = req.body.id;
 //	res.redirect('/san-pham/' + id);

@@ -1,0 +1,49 @@
+<div class="container-white container-contact">
+    <h1 class="heading">HTEAM SHOP</h1>
+    <div class="row">
+        <div class="col-lg-6 contact-info">
+            <p><img alt="" src="/uploaded/images/2017-03-18_115515.png"> &nbsp; <span>Địa chỉ: QUẬN 5, HCM</span></p>
+            <p><img alt="" src="/uploaded/images/2017-03-18_115758.png"> &nbsp; <span>Điện thoại:</span>&nbsp;0243-946-0368</p>
+            <p><img alt="" src="/uploaded/images/2017-03-18_115913.png"> &nbsp; <span>Hotline:</span>&nbsp;0968-866-568</p>
+            <p><img alt="" src="/uploaded/images/2017-03-18_115927.png"> &nbsp; <span>Email:&nbsp;hteam@gmail.com</span></p>
+            <p>
+                <iframe height="480" src="https://www.google.com/maps/d/embed?mid=1OmwLcuuhNDYxdJYXrIC0gXzv4yOKsLNm" width="100%"></iframe>
+            </p>
+        </div>
+        <div class="col-lg-6 contact-form">
+            <p class="note">Quý khách hàng điền đúng email để bộ phận chăm sóc khách hàng của HTEAM có thể trả lời thư một cách sớm nhất. Quý khách có thể điền thêm thông tin liên hệ của mình trong phần nội dung email để HTEAM có thể chủ động liên hệ với quý khách.</p>
+            <p class="note">Trân trọng cám ơn!</p>
+            <p class="note">THỜI TRANG HTEAM</p>
+            <form id="frm_contact" method="post" action="#" name="contact" onsubmit="return validContact()">
+                <div class="form-group">
+                    <input class="form-control" value="" name="contact_name" id="contact_name" placeholder="HỌ VÀ TÊN*" type="text">
+                </div>
+                <!--end: .bound-input-->
+                <div class="form-group">
+                    <input class="form-control" value="" name="contact_address" id="contact_address" placeholder="ĐỊA CHỈ*" type="text">
+                </div>
+                <!--end: .bound-input-->
+                <div class="form-group">
+                    <input class="form-control" value="" name="contact_phone" id="contact_phone" placeholder="ĐIỆN THOẠI*" type="text">
+                </div>
+                <!--end: .bound-input-->
+                <div class="form-group">
+                    <input class="form-control" value="" name="contact_email" id="contact_email" placeholder="EMAIL*" type="text">
+                </div>
+                <!--end: .bound-input-->
+                <div class="form-group">
+                    <textarea class="form-control" name="message" id="message" placeholder="NỘI DUNG*"></textarea>
+                </div>
+                <!--end: .bound-input-->
+                <div class="group-button text-center">
+                    <a class="btn-submit" href="javascript:void(0);" onclick="validContact();" title="Gửi liên hệ">Gửi liên hệ</a>
+                </div>
+                <!--end: .bound-input-->
+                <input type="hidden" name="module" value="contact">
+                <input type="hidden" name="task" value="save">
+                <input type="hidden" name="view" value="contact">
+                <input type="hidden" name="Itemid" value="8">
+            </form>
+        </div>
+    </div>
+</div>

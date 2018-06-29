@@ -1,0 +1,113 @@
+
+            <!-- START CONTENT -->
+            <section id="main-content" class=" ">
+            <section class="wrapper main-wrapper row" style=''>
+                <div class='col-xs-12'>
+                    <div class="page-title">
+                        <div class="pull-left">
+                            <h1 class="title">Sửa Sản Phẩm</h1>
+                        </div>
+                        <div class="pull-right hidden-xs">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-12">
+                    <section class="box ">
+                        <header class="panel_header">
+                            <h2 class="title pull-left">Thông Tin</h2>
+                            <div class="actions panel_actions pull-right">
+                                <a class="box_toggle fa fa-chevron-down"></a>
+                                <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                <a class="box_close fa fa-times"></a>
+                            </div>
+                        </header>
+                        <div class="content-body">
+                            <div class="row">
+
+                                    <div class="alert alert-success">Thành công</div>
+
+                                <div class="alert alert-danger">
+                                            Thất bại
+
+                                </div>
+
+                                <form action ="" method="post" enctype="multipart/form-data">
+                                    {{# each products }}
+                                     <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                        <div class="form-group">
+                                            <label class="form-label" for="field-120334">Mã Sản Phẩm</label>
+                                            <span class="desc"></span>
+                                            <div class="controls">
+                                                <input type="text" id="maSanPham" value="{{this.maSanPham}}" class="form-control" name="maSanPham">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                        <div class="form-group">
+                                            <label class="form-label" for="field-120334">Name</label>
+                                            <span class="desc"></span>
+                                            <div class="controls">
+                                                <input type="text" id="name" value="{{this.tenSanPham}}" class="form-control" name="name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                        <div class="form-group">
+                                            <label class="form-label" for="field-120334">Hình</label>
+                                            <span class="desc"></span><br/>
+                                            <img src="{{this.imagePath}}" width="200px">
+                                            <div class="controls">
+                                                <input type="file" id="hinh" value="aaaa" required="required" class="form-control" name="hinh">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                        <div class="form-group">
+                                            <label class="form-label" for="field-120334">Giá</label>
+                                            <span class="desc"></span>
+                                            <div class="controls">
+                                                <input type="number" id="gia" value="{{this.gia}}" min="0" class="form-control" name="gia">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                        <div class="form-group">
+                                            <label class="form-label" for="field-120334">Loại Sản Phẩm</label>
+                                            <span class="desc"></span>
+                                            <div class="controls">
+                                                <input type="text" id="maLoai" value="{{this.maLoai}}" min="0" class="form-control" name="maLoai">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                        <div class="form-group">
+                                            <label class="form-label" for="field-120334">Chi Tiết Sản Phẩm</label>
+                                            <span class="desc"></span>
+                                            <div class="controls">
+                                                <textarea name="des" id="des" class="form-control autogrow" cols="5" >{{this.description}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                        <div class="text-left">
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                            <button type="button" class="btn">Cancel</button>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </form>
+                                </div>
+                            </div>
+                    </section>
+                    </div>
+            </section>
+        </section>
+            <!-- END CONTENT -->
+            <div class="chatapi-windows ">
+            </div>

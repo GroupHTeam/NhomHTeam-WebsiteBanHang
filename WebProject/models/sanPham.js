@@ -8,8 +8,12 @@ var sanPhamSchema = new Schema(
       maSanPham: {type: String, required: true},
       tenSanPham: {type: String, required: true},
       gia: {type: Number, required: true},
-      maLoai: {type:String , require:true}
-    }
+      maLoai: {type:String , require:true},
+      comments: [
+      {
+         type: mongoose.Schema.Types.ObjectId, ref: "Comment"
+      }
+   ]}
   );
 
   module.exports = mongoose.model('sanPham', sanPhamSchema);

@@ -6,10 +6,22 @@ var gioHang = require('../models/gioHang');
 var quanTriVien = require('../models/quanTriVien');
 
 
+// exports.chitietsanpham = function (req, res) {
+// sanPham.find({_id: req.params.id}).then( function(data){
+//         console.log(data)
+//         res.render('frontend/home/chitietsanpham', {sanphamct: data});
+//     });
+// };
 exports.chitietsanpham = function (req, res) {
-sanPham.find({_id: req.params.id}).then( function(data){
-        console.log(data)
-        res.render('frontend/home/chitietsanpham', {sanphamct: data});
-    });
-};
+	sanPham.find({_id:req.params.id}).populate("comments").exec(function(err, foundSanPham){
+	        if(err){
+	            console.log(err);
+	        } else {
+	            console.log(foundSanPham)
+	            //render show template with that campground
+	            res.render("frontend/home/chitietsanpham", {sanphamct: foundSanPham});
+	        }
+	    });
+	};
+
 

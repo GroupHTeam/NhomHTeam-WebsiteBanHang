@@ -10,8 +10,3 @@ var loaiSanPhamSchema = new Schema(
   );
 
   module.exports = mongoose.model('loaiSanPham', loaiSanPhamSchema);
-
-  module.exports.create({
-    tenLoaiSanPham: "Cao cap",
-    maLoaiSanPham: "1A",
-})

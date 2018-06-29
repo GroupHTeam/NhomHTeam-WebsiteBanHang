@@ -1,0 +1,22 @@
+abc
+<div class="container">
+   
+    <div class="row">
+        <!-- <h1 style="text-align: center">Thêm Bình luận mới {{this.tenSanPham}}</h1> -->
+        <div style="width: 30%; margin: 25px auto;">
+             {{#each sanpham}}
+            <form method="POST" action="/new/{{this._id}}">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="comment[text]" placeholder="text">
+                </div>
+                {{/each}}
+                <div class="form-group">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}"> 
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit!</button>
+                </div>
+            </form>
+            <!-- <a href="/chitietsanpham/{{this._id}}">Trở về</a> -->
+        </div>
+    </div>
+    
+</div>

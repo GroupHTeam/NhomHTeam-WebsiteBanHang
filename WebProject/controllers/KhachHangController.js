@@ -1,4 +1,4 @@
-var csrf = require('csurf');
+//var csrf = require('csurf');
 var express = require('express');
 var expressValidator = require('express-validator');
 var router = express.Router();
@@ -11,13 +11,14 @@ var smtpTransport = require('nodemailer-smtp-transport');
 //var KhachHang = require('../models/khachHang');
 var User = require('../models/khachHang');
 var bcrypt=require('bcryptjs');
+var User1=require('../models/accoutUser')
 
 
 exports.sign_up = function(req, res, next) {
-    res.render('../default/user/signup', { title: 'Đăng kí', csrfToken: req.csrfToken() });
+    res.render('../default/user/signup', { title: 'Đăng kí' });//, csrfToken: req.csrfToken()
 };
 exports.sign_in = function(req, res, next) {
-    res.render('../default/user/signin', { title: 'Đăng nhập', csrfToken: req.csrfToken()});
+    res.render('../default/user/signin', { title: 'Đăng nhập'});///
 };
 
 exports.dangki = function(req, res, next) {
@@ -42,7 +43,7 @@ exports.dangki = function(req, res, next) {
 
     var errors = req.validationErrors();
     if (errors) {
-        res.render('../default/user/signup', { title: 'Đăng kí', errors: errors, csrfToken: req.csrfToken() });
+        res.render('../default/user/signup', { title: 'Đăng kí', errors: errors });///
     } else {
         User.findOne({
             email: {
@@ -52,7 +53,7 @@ exports.dangki = function(req, res, next) {
         }, function(err, mail) {
             if (mail) {
                 res.render('../default/user/signup', {title: 'Đăng kí',
-                     mail:mail,csrfToken: req.csrfToken()});
+                     mail:mail});///
             } else {
                 var newKhachHang = new User({
                     tenKhachHang: ten,
@@ -79,20 +80,28 @@ passport.use(new LocalStrategy(
     function(username, password, done) {
         User.getUserByUsername(username, function(err, user) {
             if (err) throw err;
-            if (user.length==0) {
-                return done(null, false,  {message: 'Email chưa được đăng kí'});
-            }
-
+            if (user.length == 0) {
+                User1.getUser(username, password, function(err, user1) {
+                    if (err) throw err;
+                    if (user1.length == 0 || user1.isAdmin==false) {
+                        return done(null, false, { message: 'Tài khoản chưa đúng!' });
+                    } else {
+                        return done(null,user1);
+                    }
+                })
+            }else{
             User.comparePassword(password, user[0].matKhau, function(err, isMatch) {
                 if (err) throw err;
                 if (isMatch) {
-                        return done(null, user);                  
+                    return done(null, user);
                 } else {
-                    return done(null, false, {message: 'Mật khẩu chưa chính xác'});
+                    return done(null, false, { message: 'Mật khẩu chưa chính xác' });
                 }
             });
+        }
         });
     }));
+
 
 passport.serializeUser(function(user, done) {
     done(null, user[0].id);
@@ -119,7 +128,7 @@ exports.sign_out= function (req, res,next) {
 };
 
 exports.quenMK=function(req, res, next){
-    res.render('../default/user/forgot',{tittle: 'Quên mật khẩu', csrfToken: req.csrfToken()});
+    res.render('../default/user/forgot',{tittle: 'Quên mật khẩu'});///
 }
 
 exports.forgot = function(req, res, next) {
@@ -133,7 +142,7 @@ exports.forgot = function(req, res, next) {
         function(token, done) {
             User.findOne({ email: req.body.email }, function(err, user) {
                 if (!user) {
-                    return res.render('../default/user/forgot', { title: 'Quên mật khẩu', errors: 'errors', csrfToken: req.csrfToken() });
+                    return res.render('../default/user/forgot', { title: 'Quên mật khẩu', errors: 'errors' });///
                 }
 
                 user.resetPasswordToken = token;
@@ -147,13 +156,13 @@ exports.forgot = function(req, res, next) {
             var transport = nodemailer.createTransport(smtpTransport({
                 service:'Gmail',
                 auth: {
-                    user: 'hanhkim130497@gmail.com',
-                    pass: 'lethikimhanh'
+                    user: 'truongthihien1304@gmail.com',
+                    pass: 'truonghien02'
                 }
             }));
             var mailOptions = {
                 to: user.email,
-                from: '"HTeamShop"<hanhkim130497@gmail.com>',
+                from: '"HTeamShop"<truonghien1304@gmail.com>',
                 subject: 'Node.js Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -178,13 +187,12 @@ exports.reset=function(req,res, next){
       return res.redirect('/forgot');
     }
     res.render('../default/user/reset', {
-      user: req.user,csrfToken: req.csrfToken()
+      user: req.user///
     });
   });
 };
 
 exports.thaydoi = function(req, res, next) {
-    console.log('vao day')
     async.waterfall([
         function(done) {
             User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
@@ -199,23 +207,18 @@ exports.thaydoi = function(req, res, next) {
                 req.checkBody('matkhau2', 'Mật khẩu không trùng khớp.').equals(req.body.matkhau);
                 var error = req.validationErrors();
                 if (error) {
-                    res.render('../default/user/reset', { title: 'Reset mật khẩu', error: error, csrfToken: req.csrfToken() });
+                    res.render('../default/user/reset', { title: 'Reset mật khẩu', error: error});///
                 } else {
                     user.resetPasswordToken = undefined;
                     user.resetPasswordExpires = undefined;
-                    User.createKhachHang(user, function(err, taiKhoan) {
+                    User.createUser(user, function(err, taiKhoan) {
                         if (err) throw err;
-                    });
-                       user.save(function(err) {
-                        req.logIn(user, function(err) {
-                            done(err, user);
-                        });
                     });
                 }
             })
         }
     ], function(err) {
-         res.render('../default/user/signin', { title: "đăng nhập", csrfToken: req.csrfToken() });
+         res.render('../default/user/signin', { title: "đăng nhập"});///
         //res.redirect('/');
     });
 };

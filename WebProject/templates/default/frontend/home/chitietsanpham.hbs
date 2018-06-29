@@ -1,3 +1,6 @@
+  {{#if success_msg}}
+        <div class="alert alert-success">{{success_msg}}</div>
+        {{/if}}
 {{#each sanphamct}}
     <div class="row">
         <h1 id="chitiet">CHI TIẾT SẢN PHẨM</h1>
@@ -14,4 +17,21 @@
             </div>
         </div>
       </div>
-    {{/each}}
+      <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/new/{{this._id}}">Add New Comment</a>
+                </div>
+                <hr>              
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>ten: {{this.comments.author.username }}</strong>
+                            <span class="pull-right">10 days ago</span>
+                            <p>
+                                {{ this.comments.text }} 
+                            </p>
+                    
+                        </div>
+                    </div>
+               
+            </div>
+{{/each}}

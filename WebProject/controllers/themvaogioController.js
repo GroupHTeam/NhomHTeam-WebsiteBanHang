@@ -71,7 +71,7 @@ exports.kiemtra = function(req, res, next){
     }
 
     var errMsg = req.flash('error')[0];
-    res.render('frontend/home/kiemtra', {total: cart, errMsg: errMsg, noError: !errMsg, csrfToken: req.csrfToken()} )
+    res.render('frontend/home/kiemtra', {total: cart, errMsg: errMsg, noError: !errMsg} )///
 }
 
 
@@ -85,11 +85,12 @@ exports.luuthongtin = function(req, res, next){
    
 
     var order = new Order({
-        khachHang: req.khachHang,
+        ID: req.body.ID,
         cart: cart,
         name: req.body.name,//name của người nhận hàng
         address: req.body.address,//Dia chi người nhận hàng
         phone: req.body.phone,//SDT người nhận hàng
+        status:1       // Tình trạng chưa giao hàng
     });
 
     console.log(order);

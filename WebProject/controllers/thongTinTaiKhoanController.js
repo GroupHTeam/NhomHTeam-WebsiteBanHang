@@ -11,13 +11,13 @@ exports.infoaccout_get = function(req, res,next){
 	Customers.find({_id: req.params.id}).then( function(data){	
 		var i = req.params.id;
 		console.log(i);
-		res.render('../default/user/profile',{ title: "Thong tin tai khoan", customers: data, csrfToken: req.csrfToken()});
+		res.render('../default/user/profile',{ title: "Thong tin tai khoan", customers: data});///
 	});
 };
 
 
 exports.dathang=function(req, res, next){
-	Order.find({khachHang: req.khachHang}, function(err, orders){
+	Order.find({ID: req.params.id}, function(err, orders){
 		if(err){
 			return res.write('Error!');
 		}
@@ -43,7 +43,7 @@ exports.capnhat = function(req, res, next) {
             }
         }).then(function(data) {
         	Customers.find({_id: req.params.id}).then(function(data1){
-                res.render('../default/user/profile', { title: "Thông tin tài khoản", csrfToken: req.csrfToken(), customers: data1});
+                res.render('../default/user/profile', { title: "Thông tin tài khoản", customers: data1});///
             })
         })
     }

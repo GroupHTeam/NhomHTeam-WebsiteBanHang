@@ -1,4 +1,19 @@
-
+<div class="row">
+  <p>Tìm sản phẩm theo giá</p>
+    <label class="radio-inline">
+     <a href="/timkiemtheogia"> <input type="radio" name="optradio">dưới 10</a>
+    </label>
+    <label class="radio-inline">
+     <a href="/timkiemtheogia"> <input type="radio" name="optradio">trên 20</a>
+    </label>
+    <label class="radio-inline">
+     <a href="/timkiemtheogia"> <input type="radio" name="optradio">20 trở lên</a>
+    </label>
+    <!-- <a href="/timkiemtheogia">nhan vo</a> -->
+</div>
+{{#if noMatch}}
+<h4>{{noMatch}}</h4>
+{{/if}}
 {{# each sanPhams}}
       <div class="row">
         {{# each this }}
@@ -19,4 +34,6 @@
     {{/each}}
   </div>
 {{/each}}
+
+
 

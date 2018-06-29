@@ -206,7 +206,7 @@ router.post('/admin/product/them-san-pham.html/submit', upload.single('hinh'), f
         //  if(e) throw e;
         // });
         var cates = Cates.find(function(err, docs) {
-<<<<<<< HEAD
+
         var cateChunks = [];
         var chunkSize = 1;
         for (var i = 0; i < docs.length; i += chunkSize) {
@@ -254,68 +254,6 @@ router.post('/admin/product/them-san-pham.html/submit', upload.single('hinh'), f
             }
         });
 }});
-
-// Kết thúc add sản phẩm
-
-/////// Sửa sản phẩm
-router.post('/admin/product/:id/sua-product.html', ensureAuthenticated1, upload.single('hinh'), function(req, res, next) {
-// Validation
-req.check('name', 'Tên không được rổng').notEmpty();
-
-var errors = req.validationErrors();
-
-if (errors) {
-    var cates = Cates.find(function(err, docs) {
-        var cateChunks = [];
-        var chunkSize = 1;
-        for (var i = 0; i < docs.length; i += chunkSize) {
-            cateChunks.push(docs.slice(i, i + chunkSize));
-        }
-
-        res.render('../admin/product/edit', {
-            title: "Sửa Sản Phẩm",
-            cates: cateChunks,
-            layout: '../../admin/layouts/layout.hbs',
-            errors: errors
-        });
-    });
-
-} else {
-    product.findOne({ maSanPham: req.params.id }, function(err, data) {
-        //var file = './public/upload/' + data.imagePath;
-        // var fs = require('fs');
-        // fs.unlink(file, function(e) {
-        //        if (e) throw e;
-        //    }),
-
-            var cateChunks = [];
-            var chunkSize = 1;
-            for (var i = 0; i < docs.length; i += chunkSize) {
-                cateChunks.push(docs.slice(i, i + chunkSize));
-            }
-            res.render('../admin/product/add', {
-                title: "Thêm Sản Phẩm",
-                cates: cateChunks,
-                layout: '../../admin/layouts/layout.hbs',
-                errors: errors
-            });
-        });
-    } else {
-        var pro = new product({
-            maSanPham: req.body.maSanPham,
-            tenSanPham: req.body.name,
-            imagePath: req.file.filename,
-            maLoai: req.body.maLoai,
-            description: req.body.des,
-            gia: req.body.gia,
-        });
-        pro.save().then(function() {
-            req.flash('success_msg', 'Đã Thêm Thành Công');
-            res.redirect('/admin/product/danh-sach.html');
-        });
-    }
-});
-// Kết thúc add sản phẩm
 
 /////// Sửa sản phẩm
 router.post('/admin/product/:id/sua-product.html', upload.single('hinh'), function(req, res, next) {

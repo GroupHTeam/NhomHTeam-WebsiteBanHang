@@ -26,6 +26,10 @@
         </header>
         <div class="content-body">
             <div class="row">
+               {{#if dataProduct}}
+                    <div class="alert alert-danger">Mã sản phẩm đã tồn tại </div>
+                {{/if}}
+
                 {{#if success_msg}}
                 <div class="alert alert-success">{{success_msg}}</div>
                 {{else}}

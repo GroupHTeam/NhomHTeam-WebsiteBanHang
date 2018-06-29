@@ -202,38 +202,39 @@ router.post('/admin/product/them-san-pham.html/submit', ensureAuthenticated1, up
         });
         });
     } else {
-    product.find({ maSanPham: req.body.maSanPham }, function(err, dataProduct) {
-        if (dataProduct) {
-            var cates = Cates.find(function(err, docs) {
-            var cateChunks = [];
-            var chunkSize = 1;
-            for (var i = 0; i < docs.length; i += chunkSize) {
-                cateChunks.push(docs.slice(i, i + chunkSize));
+
+        product.find({ maSanPham: req.body.maSanPham }, function(err, dataProduct) {
+            if (dataProduct.length>=1) {
+                var cates = Cates.find(function(err, docs) {
+                var cateChunks = [];
+                var chunkSize = 1;
+                for (var i = 0; i < docs.length; i += chunkSize) {
+                    cateChunks.push(docs.slice(i, i + chunkSize));
+                }
+
+                res.render('../admin/product/add', {
+                    title: "Them san pham",
+                    dataProduct: dataProduct, cates: cateChunks,
+                    layout: '../../admin/layouts/layout.hbs'
+                });
+
+                console.log(dataProduct);
+            });
+            } else {
+                var pro = new product({
+                    maSanPham: req.body.maSanPham,
+                    tenSanPham: req.body.name,
+                    imagePath: req.file.filename,
+                    maLoai: req.body.maLoai,
+                    description: req.body.des,
+                    gia: req.body.gia,
+                });
+                pro.save().then(function() {
+                    req.flash('success_msg', 'Đã Thêm Thành Công');
+                    res.redirect('/admin/product/danh-sach.html');
+                });
             }
-
-            res.render('../admin/product/add', {
-                title: "Them san pham",
-                dataProduct: dataProduct,
-                layout: '../../admin/layouts/layout.hbs'
-            });
-
-            console.log(dataProduct);
         });
-        } else {
-            var pro = new product({
-                maSanPham: req.body.maSanPham,
-                tenSanPham: req.body.name,
-                imagePath: req.file.filename,
-                maLoai: req.body.maLoai,
-                description: req.body.des,
-                gia: req.body.gia,
-            });
-            pro.save().then(function() {
-                req.flash('success_msg', 'Đã Thêm Thành Công');
-                res.redirect('/admin/product/danh-sach.html');
-            });
-        }
-    });
 }});
 
 // Kết thúc add sản phẩm
@@ -242,7 +243,6 @@ router.post('/admin/product/them-san-pham.html/submit', ensureAuthenticated1, up
 router.post('/admin/product/:id/sua-product.html', ensureAuthenticated1, upload.single('hinh'), function(req, res, next) {
 // Validation
 req.check('name', 'Tên không được rổng').notEmpty();
-req.check('maLoai', 'Chưa chọn mã loại').notEmpty();
 
 var errors = req.validationErrors();
 
@@ -264,13 +264,14 @@ if (errors) {
 
 } else {
     product.findOne({ maSanPham: req.params.id }, function(err, data) {
-        //var file = './public/upload/' + data.img;
-        //var fs = require('fs');
-        //fs.unlink(file, function(e) {
+        //var file = './public/upload/' + data.imagePath;
+        // var fs = require('fs');
+        // fs.unlink(file, function(e) {
         //        if (e) throw e;
         //    }),
 
-        data.maSanPham = req.params.id,
+
+            data.maSanPham = req.params.id,
             data.tenSanPham = req.body.name,
             data.imagePath = req.file.filename,
             data.maLoai = req.body.maLoai,
@@ -285,59 +286,6 @@ if (errors) {
 }
 
 });
-
-                // function checkSanPhamOwnership (req, res, next){
-                //  if(req.isAuthenticated()){
-                //         sanPham.findById(req.params.id, function(err, foundSanPham){
-                //            if(err){
-                //                req.flash("error", "Không tìm thấy sản phẩm");
-                //                res.redirect("back");
-                //            }  else {
-                //                // does user own the campground?
-                //             if(foundSanPham.author.id.equals(req.khachHang._id)) {
-                //                 next();
-                //             } else {
-                //                 req.flash("error", "Bạn không thể thực hiện!!!");
-                //                 res.redirect("back");
-                //             }
-                //            }
-                //         });
-                //     } else {
-                //         req.flash("error", "Bạn cần đăng nhập trước khi thực hiện!!!");
-                //         res.redirect("back");
-                //     }
-                // }
-
-                // function checkCommentOwnership(req, res, next){
-                //  if(req.isAuthenticated()){
-                //         Comment.findById(req.params.comment_id, function(err, foundComment){
-                //            if(err){
-                //                res.redirect("back");
-                //            }  else {
-                //                // does user own the comment?
-                //             if(foundComment.author.id.equals(req.khachHang._id)) {
-                //                 next();
-                //             } else {
-                //                 req.flash("error", "Bạn không thể thực hiện!!!");
-                //                 res.redirect("back");
-                //             }
-                //            }
-                //         });
-                //     } else {
-                //         req.flash("error", "Bạn cần đăng nhập trước khi thực hiện!!!");
-                //         res.redirect("back");
-                //     }
-                // }
-
-                // function isLoggedIn (req, res, next){
-                //     if(req.isAuthenticated()){
-                //         return next();
-                //     }
-                //     req.session.redirectTo = req.originalUrl;
-                //     req.flash("error", "Bạn cần đăng nhập trước khi thực hiện!!!");
-                //     res.redirect("/user/signin");
-                // }
-
 
 
 module.exports = router;

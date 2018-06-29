@@ -34,6 +34,9 @@
     <div id="success" class="alert alert-success" {{#if noMessage}}hidden{{/if}}>
     {{successMsg}}
     </div>
+    {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
   </div>
 </div>
 

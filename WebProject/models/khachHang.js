@@ -11,8 +11,7 @@ var khachHangSchema = new Schema(
       soDienThoai: {type: String, required: true, max: 11},
       matKhau: {type: String, required: true, max: 100},
       resetPasswordToken: {type: String},
-      resetPasswordExpires:{type:Date},
-      isAdmin: {type: Boolean, default: false}
+      resetPasswordExpires:{type:Date}
     }
   );
 var User=module.exports = mongoose.model('khachHang', khachHangSchema)

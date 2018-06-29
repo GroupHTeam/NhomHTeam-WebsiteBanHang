@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 
 var taiKhoanSchema = new Schema({
     ten: {type: String, required: true, max: 100},
-    matKhau: {type: String, required: true, max: 100},
-    isAdmin: {type: Boolean, default: true}
+    matKhau: {type: String, required: true, max: 100}
+
 });
 var User=module.exports = mongoose.model('accoutUser', taiKhoanSchema)
 

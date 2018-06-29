@@ -26,9 +26,6 @@
         </header>
         <div class="content-body">
             <div class="row">
-                {{#if dataProduct}}
-                <div class="alert alert-danger">Mã sản phẩm đã tổn tại</div>
-                {{/if}}
                 {{#if success_msg}}
                 <div class="alert alert-success">{{success_msg}}</div>
                 {{else}}
@@ -104,8 +101,8 @@
                             <button type="cancel" class="btn">Cancel</button>
                         </div>
                     </div>
-                </form>{{/if}}
-                
+                </form>
+                {{/if}}
             </div>
         </div>
     </section>

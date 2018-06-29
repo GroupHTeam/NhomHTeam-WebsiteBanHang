@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var user=require('../models/khachHang')
+var taikhoan=require('../models/khachHang')
 var sanPham = require('../models/sanPham');
 var Comment = require('../models/comment');
-var csrf = require('csurf');
+
 
 
 exports.taocommentmoi = function(req, res, next){
@@ -12,38 +12,53 @@ console.log(req.params.id);
         if(err){
             console.log(err);
         } else {
-             res.render("comment/new", {sanpham: sanpham, csrfToken: req.csrfToken()});
+             res.render("comment/new", {sanpham: sanpham});
         }
     })
 }
 
-exports.taocomment = function(req, res){
-	sanPham.findById(req.params.id, function(err, sanphams){
-       if(err){
-           console.log(err);
-           res.redirect("/");
-       } else {
-       	console.log(req.user.tenKhachHang);
-        Comment.create(req.body.comment, function(err, comment){
-           if(err){
-               req.flash("error", "Lỗi!!!");
-               console.log(err);
-           } else {
-               //add username and id to comment
-               comment.author.id = req.user._id;
-               comment.author.username = req.user.tenKhachHang;
-               //save comment
-               comment.save();
-               sanphams.comments.push(comment);
-               sanphams.save();
-               console.log(req.user.tenKhachHang);
-               req.flash("success_msg", "Nhập bình luận thành công");
-               res.redirect('/chitietsanpham/' + sanphams._id);
-           }
-        });
-       }
-   });
+exports.taocomment = function(req, res) {
+    sanPham.findById(req.params.id, function(err, sanphams) {
+        if (err) {
+            console.log(err);
+            res.redirect("/");
+        } else {
+            Comment.create(req.body.comment, function(err, comment) {
+                if (err) {
+                    req.flash("error", "Lỗi!!!");
+                    console.log(err);
+                } else {
+
+                    if (req.isAuthenticated()) {
+                        taikhoan.findOne({ _id: req.session.passport.user }).then(function(data) {
+                            if (data) {
+
+                                comment.author.id = data._id;
+                                comment.author.username = data.tenKhachHang;
+                                comment.noidung = req.body.nd;
+
+                                //save comment
+
+                                comment.save();
+                                sanphams.comments.push(comment);
+                                sanphams.save();
+                                req.flash("success_msg", "Nhập bình luận thành công");
+                                res.redirect('/chitietsanpham/' + sanphams._id);
+                            } else {
+                                res.render("../default/comment/cmt", { title: 'Bình luận' })
+                                console.log(req.body.ten)
+                            }
+                        })
+                    } else {
+                        res.render("../default/comment/cmt", { title: 'Bình luận' })
+                        console.log(req.body.ten)
+                    }
+                }
+            })
+        }
+    })
 }
+
 
 exports.edit = function(req, res){
 	Comment.findById(req.params.comment_id, function(err, foundComment){

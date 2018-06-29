@@ -3,6 +3,9 @@
     </div>
     <div class="row">
     <div class="col-md-8">
+        {{#if message}}
+        <div class="alert alert-success">{{message}}</div>
+        {{/if}}
         {{#if customers}} 
         <h3 class="page-header">THÔNG TIN TÀI KHOẢN</h3>
         <form method="post">
@@ -40,10 +43,16 @@
                         <input type="text" value="{{this.gioiTinh}}" class="form-control" id="gioitinh" name="gioitinh">
                     </div>
                 </div>
-                {{/each}}
-                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <div style="float: left">
                     <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-                   <a href="/"> <button type="button" class="btn btn-default">Hủy</button>   </a>           
+                </div>
+                <div  style="float: right">
+                    <a href="/user/doimatkhau/{{this._id}}"><button type="button" class="btn btn-default">Đổi Mật Khẩu</button>      
+                </div>
+                <div  style="float: right">
+                    <button type="reset" class="btn btn-default">Hủy</button>      
+                </div>  
+                 {{/each}}      
             </div>
         </form>
         {{/if}}

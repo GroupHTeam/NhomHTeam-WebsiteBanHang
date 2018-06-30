@@ -1,43 +1,53 @@
-  {{#if success_msg}}
-        <div class="alert alert-success">{{success_msg}}</div>
-        {{/if}}
-{{#each sanphamct}}
-    <div class="row">
-        <h1 id="chitiet">CHI TIẾT SẢN PHẨM</h1>
-        <div class="detail">
-            <img width = "240" height="288" src="../{{ this.imagePath }}" alt="..." class="img-responsive" style="float:left" id="img-detail">
-            <div class="caption" id="caption-detail">
-              <h3>{{ this.tenSanPham }}</h3>
-              <p> Số lần xem: {{this.solanxem}}</p>
-              <p class="description">{{ this.description }}</p>
-              <p>{{this.maSanPham}}</p>
-              <div class="clearfix">
+ {{#if success_msg}}
+<div class="alert alert-success">{{success_msg}}</div>
+{{/if}} {{#each sanphamct}}
+<div class="row">
+    <h1 id="chitiet">CHI TIẾT SẢN PHẨM</h1>
+    <div class="detail">
+        <img width="240" height="288" src="../{{ this.imagePath }}" alt="..." class="img-responsive" style="float:left" id="img-detail">
+        <div class="caption" id="caption-detail">
+            <h3>{{ this.tenSanPham }}</h3>
+            <p> Số lần xem: {{this.solanxem}}</p>
+            <p class="description">{{ this.description }}</p>
+            <p>{{this.maSanPham}}</p>
+            <div class="clearfix">
                 <div class="price">${{ this.gia }}</div>
                 <a id="themvaogio" href="/themvaogio/{{this._id}}" class="btn btn-success" role="button">Thêm vào giỏ hàng</a>
-              </div>
             </div>
         </div>
-      </div>
-      <div class="well">
-                <div class="text-right">
-                  <textarea rows="3" cols="70">  
-                    Đây là một ví dụ sử dụng thẻ textarea với thuộc tính rows và cols
-                  </textarea> 
-                    <a class="btn btn-success" href="/new/{{this._id}}">Add New Comment</a>
-                </div>
-                <hr>   
-                {{#each this.comments}}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong>{{@index}}. {{this.author.username }}</strong>
-                            <p>
-                                {{ this.noidung }} 
-                            </p>
-                            <span class="pull-right">10 days ago</span>
-                            
-                 {{/each}}
-                        </div>
-                    </div>
-                 
-              </div>
+    </div>
+</div>
 {{/each}}
+
+<div class="well">
+    <h4>BÌNH LUẬN</h4>
+    <form method="post">
+        {{#if error_msg}}
+        <div class="alert alert-success">{{error_msg}}</div>
+        {{/if}} {{#unless tk}}
+        <div>
+            <input type="text" name="ten" placeholder="Tên Người Gửi">
+        </div>
+        {{/unless}}
+        <textarea name="binhluan" cols="90" rows="5" placeholder="Mời bạn để lại bình luận..."></textarea>
+        <div>
+            <button type="submit">Gửi</button>
+        </div>
+    </form>
+
+    {{#each sanphamct}}
+    <h4>{{this.comments.length}} Bình luận</h4>
+    <hr>
+    <div class="row">
+        {{#each this.comments}}
+        <div class="col-md-12">
+            <strong>{{this.author.username }}</strong>
+            <p>
+                {{ this.noidung }}
+            </p>
+        </div>
+        <div>{{this.date}} {{this.time}}</div>
+        {{/each}}
+    </div>
+    {{/each}}
+</div>

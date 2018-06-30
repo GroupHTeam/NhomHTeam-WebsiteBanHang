@@ -25,11 +25,13 @@
                         </header>
                         <div class="content-body">
                             <div class="row">
-                        {{#if success_msg}}
-                        <div class="alert alert-success">Thành công</div>
-                        {{else}} {{#if errors}} {{#each errors}}
-                        <div class="alert alert-danger"> {{msg}}</div>
-                        {{/each}} {{/if}}
+
+                                    <div class="alert alert-success">Thành công</div>
+
+                                <div class="alert alert-danger">
+                                            Thất bại
+
+                                </div>
 
                                 <form action ="" method="post" enctype="multipart/form-data">
                                     {{# each products }}
@@ -38,7 +40,7 @@
                                             <label class="form-label" for="field-120334">Mã Sản Phẩm</label>
                                             <span class="desc"></span>
                                             <div class="controls">
-                                                <input type="text" id="maSanPham" value="{{this.maSanPham}}" class="form-control" name="maSanPham" disabled>
+                                                <input type="text" id="maSanPham" value="{{this.maSanPham}}" class="form-control" name="maSanPham">
                                             </div>
                                         </div>
                                     </div>
@@ -56,9 +58,9 @@
                                         <div class="form-group">
                                             <label class="form-label" for="field-120334">Hình</label>
                                             <span class="desc"></span><br/>
-                                            <img src="/upload/{{this.imagePath}}" width="200px"> 
+                                            <img src="{{this.imagePath}}" width="200px">
                                             <div class="controls">
-                                                <input type="file" id="hinhanh" value="{{this.imagePath}}" required="required" class="form-control" name="hinh">
+                                                <input type="file" id="hinh" value="aaaa" required="required" class="form-control" name="hinh">
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +79,7 @@
                                             <label class="form-label" for="field-120334">Loại Sản Phẩm</label>
                                             <span class="desc"></span>
                                             <div class="controls">
-                                                <input type="text" name="maLoai" id="maLoai" value="{{this.maLoai}}" class="form-control" >
+                                                <input type="text" id="maLoai" value="{{this.maLoai}}" min="0" class="form-control" name="maLoai">
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +102,6 @@
                                     </div>
                                     {{/each}}
                                 </form>
-                                {{/if}}
                                 </div>
                             </div>
                     </section>

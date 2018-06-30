@@ -127,11 +127,13 @@ function ensureAuthenticated1(req, res, next){
 }
 
 
-router.get('/new/:id',  comment_Controller.taocommentmoi);
-router.post('/new/:id',  comment_Controller.taocomment);
+// router.get('/new/:id',  comment_Controller.taocommentmoi);
+router.post('/chitietsanpham/:id',  comment_Controller.taocomment);
 router.get('/:comment_id/edit',  comment_Controller.edit );
 router.put('/:comment_id',  comment_Controller.update);
 router.put('/:comment_id',  comment_Controller.delete);
+// router.get('/comment/:id',comment_Controller.nhapten)
+// router.post('/comment/:id',comment_Controller.thembinhluan)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,54 +208,34 @@ router.post('/admin/product/them-san-pham.html/submit', upload.single('hinh'), f
         //  if(e) throw e;
         // });
         var cates = Cates.find(function(err, docs) {
-
-        var cateChunks = [];
-        var chunkSize = 1;
-        for (var i = 0; i < docs.length; i += chunkSize) {
-            cateChunks.push(docs.slice(i, i + chunkSize));
-        }
-        res.render('../admin/product/add', {
-            title: "Thêm Sản Phẩm",
-            cates: cateChunks,
-            layout: '../../admin/layouts/layout.hbs',
-            errors: errors
-        });
+            var cateChunks = [];
+            var chunkSize = 1;
+            for (var i = 0; i < docs.length; i += chunkSize) {
+                cateChunks.push(docs.slice(i, i + chunkSize));
+            }
+            res.render('../admin/product/add', {
+                title: "Thêm Sản Phẩm",
+                cates: cateChunks,
+                layout: '../../admin/layouts/layout.hbs',
+                errors: errors
+            });
         });
     } else {
-
-        product.find({ maSanPham: req.body.maSanPham }, function(err, dataProduct) {
-            if (dataProduct.length>=1) {
-                var cates = Cates.find(function(err, docs) {
-                var cateChunks = [];
-                var chunkSize = 1;
-                for (var i = 0; i < docs.length; i += chunkSize) {
-                    cateChunks.push(docs.slice(i, i + chunkSize));
-                }
-
-                res.render('../admin/product/add', {
-                    title: "Them san pham",
-                    dataProduct: dataProduct, cates: cateChunks,
-                    layout: '../../admin/layouts/layout.hbs'
-                });
-
-                console.log(dataProduct);
-            });
-            } else {
-                var pro = new product({
-                    maSanPham: req.body.maSanPham,
-                    tenSanPham: req.body.name,
-                    imagePath: req.file.filename,
-                    maLoai: req.body.maLoai,
-                    description: req.body.des,
-                    gia: req.body.gia,
-                });
-                pro.save().then(function() {
-                    req.flash('success_msg', 'Đã Thêm Thành Công');
-                    res.redirect('/admin/product/danh-sach.html');
-                });
-            }
+        var pro = new product({
+            maSanPham: req.body.maSanPham,
+            tenSanPham: req.body.name,
+            imagePath: req.file.filename,
+            maLoai: req.body.maLoai,
+            description: req.body.des,
+            gia: req.body.gia,
         });
-}});
+        pro.save().then(function() {
+            req.flash('success_msg', 'Đã Thêm Thành Công');
+            res.redirect('/admin/product/danh-sach.html');
+        });
+    }
+});
+// Kết thúc add sản phẩm
 
 /////// Sửa sản phẩm
 router.post('/admin/product/:id/sua-product.html', upload.single('hinh'), function(req, res, next) {
@@ -302,6 +284,58 @@ router.post('/admin/product/:id/sua-product.html', upload.single('hinh'), functi
     }
 
 });
+
+// function checkSanPhamOwnership (req, res, next){
+// 	if(req.isAuthenticated()){
+//         sanPham.findById(req.params.id, function(err, foundSanPham){
+//            if(err){
+//                req.flash("error", "Không tìm thấy sản phẩm");
+//                res.redirect("back");
+//            }  else {
+//                // does user own the campground?
+//             if(foundSanPham.author.id.equals(req.khachHang._id)) {
+//                 next();
+//             } else {
+//                 req.flash("error", "Bạn không thể thực hiện!!!");
+//                 res.redirect("back");
+//             }
+//            }
+//         });
+//     } else {
+//         req.flash("error", "Bạn cần đăng nhập trước khi thực hiện!!!");
+//         res.redirect("back");
+//     }
+// }
+
+// function checkCommentOwnership(req, res, next){
+// 	if(req.isAuthenticated()){
+//         Comment.findById(req.params.comment_id, function(err, foundComment){
+//            if(err){
+//                res.redirect("back");
+//            }  else {
+//                // does user own the comment?
+//             if(foundComment.author.id.equals(req.khachHang._id)) {
+//                 next();
+//             } else {
+//                 req.flash("error", "Bạn không thể thực hiện!!!");
+//                 res.redirect("back");
+//             }
+//            }
+//         });
+//     } else {
+//         req.flash("error", "Bạn cần đăng nhập trước khi thực hiện!!!");
+//         res.redirect("back");
+//     }
+// }
+
+// function isLoggedIn (req, res, next){
+//     if(req.isAuthenticated()){
+//         return next();
+//     }
+//     req.session.redirectTo = req.originalUrl;
+//     req.flash("error", "Bạn cần đăng nhập trước khi thực hiện!!!");
+//     res.redirect("/user/signin");
+// }
 
 
 

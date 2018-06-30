@@ -1,4 +1,4 @@
-
+var taikhoan=require('../models/khachHang')
 var sanPham = require('../models/sanPham');
 var gioHang = require('../models/gioHang');
 //var loaiSanPham = require('../models/loaiSanPham');
@@ -22,19 +22,32 @@ exports.chitietsanpham = function(req, res) {
                     solanxem: solan
                 }
             }).then(function(dt) {
-            	sanPham.find({_id: req.params.id}).then(function(sp){
-                    var sanPhamChunks =[];
+                sanPham.find({ _id: req.params.id }).then(function(sp) {
+                    var sanPhamChunks = [];
                     var chunkSize = 1;
-                    for(var i=0;i<sp[0].comments.length;i += chunkSize){
-                      sanPhamChunks.push(sp[0].comments.slice(i, i+ chunkSize));
+                    for (var i = 0; i < sp[0].comments.length; i += chunkSize) {
+                        sanPhamChunks.push(sp[0].comments.slice(i, i + chunkSize));
                     }
-            		res.render("frontend/home/chitietsanpham", { sanphamct: foundSanPham, com:sanPhamChunks});
-            	})
-                
+
+                    if (req.isAuthenticated()) {
+                        taikhoan.findOne({ _id: req.session.passport.user }).then(function(data) {
+                            if (data) {
+                                res.render("frontend/home/chitietsanpham", { sanphamct: foundSanPham, com: sanPhamChunks,tk:data});
+                            }
+                            else{
+                                res.render("frontend/home/chitietsanpham", { sanphamct: foundSanPham, com: sanPhamChunks});
+                           
+                            }
+                        })
+
+                    }
+                    else {
+                        res.render("frontend/home/chitietsanpham", { sanphamct: foundSanPham, com: sanPhamChunks});
+                    }
+
+                })
             })
-
         }
-    });
-};
-
+    })
+}
 

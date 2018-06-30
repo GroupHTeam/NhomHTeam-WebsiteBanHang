@@ -89,6 +89,7 @@ exports.suasanpham_post =  function (req, res) {
 
 			data.maSanPham		= req.body.maSanPham,
 			data.tenSanPham 	= req.body.name,
+			//nameKhongDau 	: bodauTiengViet(req.body.name),
 			data.imagePath 		= req.file.filename,
 			data.maLoai 		= req.body.maLoai,
 			data.description 	= req.body.des,

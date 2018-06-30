@@ -32,9 +32,7 @@
                             <div>
                                 <p><strong>Số điện thoại: </strong> {{this.phone}}</p>
                             </div>
-                            <!-- <div>
-                               <p><strong>Tài khoản: </strong> {{this.taiKhoan.email}}</p>
-                           </div> -->
+                           
                             <div>
                                 <p><strong>Địa chỉ: </strong>{{this.address}}</p>
                             </div>
@@ -66,10 +64,16 @@
                                         <td>{{this.gia}}</td>
                                     </tr>
                                     {{/each}}
+                                    
+                                    <tr>
+                                        <td colspan="5">
+                                            <p><strong style="color:red">Tồng Tiền: </strong> {{this.cart.totalPrice}}đ</p>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td colspan="5">
                                             {{#if " this.status == 1 "}}
-                                            <a href="/admin/cart/{{this.ID}}/chitietgiohang.html/thanhtoan">{{this.status}} - Chưa giao </a>
+                                            <a href="/admin/cart/{{this.ID}}/chitietgiohang.html/thanhtoan">Thanh toán</a>
                                             {{else}}
                                             <span>Đã giao</span>
                                             {{/if}} 
@@ -77,11 +81,16 @@
                                             <a href="/admin/cart/{{this.ID}}/xoa-cart.html">Xoá</a>
                                         </td>
                                     </tr>
+                                    
                                     <tr>
-                                        <td colspan="5">
-                                            <p><strong style="color:red">Tồng Tiền: </strong> {{this.cart.totalPrice}}đ</p>
+                                        <td colspan = "5">
+                                            <div>Tình trạng: {{this.status}}</div>
+                                            <div>1: Chưa giao/ 0: Đã giao</div>
                                         </td>
+                                        
+                                        <td></td>
                                     </tr>
+
                                 </tbody>
                             </table>
                             {{/each}}

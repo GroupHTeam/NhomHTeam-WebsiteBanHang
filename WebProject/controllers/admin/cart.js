@@ -49,12 +49,14 @@ exports.thanhtoan_get = function(req,res,next){
 	// 	res.render('../admin/cart/chitietgiohang', {title: "Thông tin giỏ hàng" , layout:'../../admin/layouts/layout.hbs' }) //,orders: orders
 	// })
 
-	order.updateOne({ID: req.params.id}, function (err, data) {
-        $set: {data.status = 0}
+	order.updateOne({ID: req.params.id}, { $set: {status : 0}}, function (err, data) {
+        if (err) throw err;
+        console.log(data.status);
         console.log('update success: ');
 
-        res.redirect('/admin/cart/danh-sach.html');
+        res.redirect('/admin/cart/danh-sach.html') //, {title: "Thông tin giỏ hàng" , layout:'../../admin/layouts/layout.hbs' });
     })
+
 
 }
 

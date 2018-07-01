@@ -159,13 +159,13 @@ exports.forgot = function(req, res, next) {
             var transport = nodemailer.createTransport(smtpTransport({
                 service:'Gmail',
                 auth: {
-                    user: 'truongthihien1304@gmail.com',
-                    pass: 'truonghien02'
+                    user: 'hanhkim130497@gmail.com',
+                    pass: 'lethikimhanh'
                 }
             }));
             var mailOptions = {
                 to: user.email,
-                from: '"HTeamShop"<truonghien1304@gmail.com>',
+                from: '"HTeamShop"<hanhkim130497@gmail.com>',
                 subject: 'Node.js Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +

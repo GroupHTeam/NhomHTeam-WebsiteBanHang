@@ -1,39 +1,53 @@
+
+
 <div class="row">
-  <p>Tìm sản phẩm theo giá</p>
-    <label class="radio-inline">
-     <a href="/timkiemtheogia"> <input type="radio" name="optradio">dưới 10</a>
-    </label>
-    <label class="radio-inline">
-     <a href="/timkiemtheogia"> <input type="radio" name="optradio">trên 20</a>
-    </label>
-    <label class="radio-inline">
-     <a href="/timkiemtheogia"> <input type="radio" name="optradio">20 trở lên</a>
-    </label>
-    <!-- <a href="/timkiemtheogia">nhan vo</a> -->
-</div>
-{{#if noMatch}}
+  <div class="col-md-9 col-md-push-3">
+    {{#if noMatch}}
 <h4>{{noMatch}}</h4>
-{{/if}}
-{{# each sanPhams}}
-      <div class="row">
-        {{# each this }}
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <a href="./chitietsanpham/{{this._id}}">
-            <img src="{{ this.imagePath }}" alt="..." class="img-responsive">
-            </a>
-            <div class="caption">
-              <h3>{{ this.tenSanPham }}</h3>
-              <p class="description">{{ this.description }}</p>
-              <div class="clearfix">
-                <div class="price pull-left">${{ this.gia }}</div>
-              </div>
-          </div>
+{{/if}} {{# each sanPhams}}
+<div class="row">
+  {{# each this }}
+  <div class="col-xs-12 col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <a href="./chitietsanpham/{{this._id}}">
+        <img src="/upload/{{ this.imagePath }}" alt="..." class="img-responsive">
+      </a>
+      <div class="caption">
+        <h3>{{ this.tenSanPham }}</h3>
+        <p class="description">{{ this.description }}</p>
+        <div class="clearfix">
+          <div class="price pull-left">{{ this.gia }} VND</div>
         </div>
-       </div>
-    {{/each}}
+      </div>
+    </div>
   </div>
+  {{/each}}
+</div>
 {{/each}}
+</div>
+  <div class="col-md-3 col-md-pull-9">
+    <p class="title-search">Tìm sản phẩm theo giá</p>
+    <div class="glyphicon glyphicon-ok" >
+      <label>
+        <a href="/timkiemtheogia1" style="font-size: 20px">Dưới 150000 VND
+        </a>
+        </label>
+    </div>
+    <div class="glyphicon glyphicon-ok">
+      <label>
+        <a href="/timkiemtheogia2" style="font-size: 20px">Từ 150000 VND đến 300000 VND
+        </a>
+        </label>
+    </div>
+    <div class="glyphicon glyphicon-ok ">
+      <label>
+        <a href="/timkiemtheogia3" style="font-size: 20px">trên 300000 VND
+        </a>
+        </label>
+    </div>
+  </div>
+</div>
+
 
 
 

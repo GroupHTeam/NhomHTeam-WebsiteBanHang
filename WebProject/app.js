@@ -18,7 +18,16 @@ var database=require('./config/database');
 var indexRouter = require('./routes/index');
 var catalog = require('./routes/catalog');  //Import routes for "catalog" area of site
 
+// 1. cài pusher ....  2.khai báo
+const Pusher = require('pusher');
 
+const pusher = new Pusher({
+  appId:'YOUR_APP_ID',
+  key: 'YOUR_APP_KEY',
+  secret: 'YOUR_APP_SECRET',
+  cluster: 'eu',
+  encrypted: true
+})
 
 var app = express();
 

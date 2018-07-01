@@ -4,31 +4,92 @@ var router = express.Router();
 var sanPham = require('../models/sanPham');
 
 // Display list of all sản phẩm
-exports.sanPham_list = function(req, res) {
-    sanPham.find({maLoai: "A"}, function(err, docs){
-    var sanPhamChunks =[];
+exports.sanPham_list = function (req, res) {
+  sanPham.find({
+    maLoai: "A"
+  }, function (err, docs) {
+    var sanPhamChunks = [];
     var chunkSize = 4;
-    for(var i=0;i<docs.length;i += chunkSize){
-      sanPhamChunks.push(docs.slice(i, i+ chunkSize));
+    for (var i = 0; i < docs.length; i += chunkSize) {
+      sanPhamChunks.push(docs.slice(i, i + chunkSize));
     }
-    res.render('frontend/home/aothoitrang', { title: 'Áo thời trang', sanPhams: sanPhamChunks });
+    res.render('frontend/home/aothoitrang', {
+      title: 'Áo thời trang',
+      sanPhams: sanPhamChunks
+    });
   });
 };
 
-exports.timkiemtheogia10 = function(req, res){
-	sanPham.find({gia : 15 }, function(err, spgia){
-		var sanPhamChunks =[];
-    var chunkSize = 4;
-    for(var i=0;i<spgia.length;i += chunkSize){
-      sanPhamChunks.push(spgia.slice(i, i+ chunkSize));
-    }
-		res.render('frontend/home/theogia10', { title: 'Áo thời trang', spgia10: sanPhamChunks});
-	});
-};
+// exports.timkiemtheogia10 = function(req, res){
+//  sanPham.find({}, function(err, spgia){
+//    var sanPhamChunks =[];
+//     var chunkSize = 4;
+//     for(var i=0;i<spgia.length;i += chunkSize){
+//       sanPhamChunks.push(spgia.slice(i, i+ chunkSize));
+//     }
+//     res.render('frontend/home/theogia10', { title: 'Áo thời trang', spgia10: sanPhamChunks});
+
+//  });
+// };
+
+exports.timkiemtheogia1 = function (req, res) 
+{
+  sanPham.find({gia: {$lt: 150000}}, function (err, spgia) 
+  {
+      var sanPhamChunks = [];
+      var chunkSize = 4;
+      for (var i = 0; i < spgia.length; i += chunkSize)
+      {
+            sanPhamChunks.push(spgia.slice(i, i + chunkSize));
+      }
+      res.render('frontend/home/theogia10', {
+        title: 'Áo thời trang',
+        spgia10: sanPhamChunks
+      });
+  })
+}
+
+exports.timkiemtheogia2 = function (req, res) 
+{
+  sanPham.find({gia: {$gte: 150000}, gia: {$lt: 300000}}, function (err, spgia) 
+  {
+      var sanPhamChunks = [];
+      var chunkSize = 4;
+      for (var i = 0; i < spgia.length; i += chunkSize)
+      {
+            sanPhamChunks.push(spgia.slice(i, i + chunkSize));
+      }
+      res.render('frontend/home/theogia10', {
+        title: 'Áo thời trang',
+        spgia10: sanPhamChunks
+      });
+  })
+}
+
+exports.timkiemtheogia3 = function (req, res) 
+{
+  sanPham.find({gia: {$gte: 300000}}, function (err, spgia) 
+  {
+      var sanPhamChunks = [];
+      var chunkSize = 4;
+      for (var i = 0; i < spgia.length; i += chunkSize)
+      {
+            sanPhamChunks.push(spgia.slice(i, i + chunkSize));
+      }
+      res.render('frontend/home/theogia10', {
+        title: 'Áo thời trang',
+        spgia10: sanPhamChunks
+      });
+  })
+}
+
+
+
+
 
 //router.post ('/:id', function(req, res, next){
-//	var id = req.body.id;
-//	res.redirect('/san-pham/' + id);
+//  var id = req.body.id;
+//  res.redirect('/san-pham/' + id);
 //})
 
 //outer.get('/:id', function(req, res) {
@@ -45,7 +106,6 @@ exports.timkiemtheogia10 = function(req, res){
 
 
 // Display detail page for a specific sản phẩm
-exports.sanPham_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Author detail: ' + req.params.id);
+exports.sanPham_detail = function (req, res) {
+  res.send('NOT IMPLEMENTED: Author detail: ' + req.params.id);
 };
-

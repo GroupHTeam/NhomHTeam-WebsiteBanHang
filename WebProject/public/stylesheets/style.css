@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -8,7 +7,7 @@ a {
 }
 
 header {
-  background: #fff2e6;
+  background: black;
 }
 
 #call {
@@ -29,8 +28,9 @@ header {
 
 #account{
   font-size: 24px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    padding-right: 35px;
 }
 .dropdown{
   padding-top: 6px;
@@ -40,6 +40,9 @@ header {
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   color: black;
+  min-width: 140px;
+  height: 80px;
+  font-size: 13px;
 }
 
 #login {
@@ -56,7 +59,6 @@ header {
 
 #header1 {
   padding-bottom: 42px;
-  border-bottom: solid 1px #c0c0c0;
 }
 
 .input-group {
@@ -71,6 +73,7 @@ header {
 
 .input-group-btn:last-child>.btn {
   border-radius: 0px 19px 19px 0px;
+  height: 33.98px;
 }
 
 .go-cart {
@@ -128,6 +131,11 @@ header {
   margin-left: 0px;
 }
 
+.navbar {
+  border:  0px;
+  margin-bottom: 0px;
+  }
+
 nav .navbar-collapse .navbar-nav {
   text-align: center;
   float: none;
@@ -155,19 +163,20 @@ nav .navbar-collapse a:hover {
 }
 
 nav .navbar-collapse a {
-  color: #333333;
-  text-transform: uppercase;
-  padding-left: 27px;
-  padding-right: 27px;
-  font-size: 12px;
-  display: inline-block;
-  vertical-align: middle;
+    color: white;
+    text-transform: uppercase;
+    padding-left: 27px;
+    padding-right: 27px;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 #navigation{
-      background-color: #cc99ff;
+      background-color: black;
     margin-right: -31px;
     font-weight: bold;
+    padding-left: 478px;
 }
 
 .thumbnail img {
@@ -189,16 +198,16 @@ nav .navbar-collapse a {
 
 #chitiet{
   margin-top: 40px;
-  margin-left: 323px;
+  text-align: center;
 }
 
 .detail{
   margin-top: 20px;
-  margin-bottom: 40px;
-  margin-left: 100px;
-  margin-right: 100px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+    margin-bottom: 40px;
+    margin-left: 441px;
+    margin-right: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #img-detail{
@@ -294,25 +303,28 @@ font-weight: bold;
 
 /************************Footer**********************/
 #icon-footer{
-	padding-left: 5px;
+  padding-left: 5px;
 }
 
 .fixDisplay3{
-	margin-top: 20px;
-	background-color:  #1a1a1a;
-	padding-top: 15px;
+     margin-top: 20px;
+    background-color: #1a1a1a;
+    padding-top: 15px;
+    height: 58px;
+    padding-left: 22px;
+    padding-top: 21px;
+    padding-right: 49px;
 }
 
 #font-style{
-	font-style: italic;
+  font-style: italic;
 }
 /****************************************************/
 
 #bd{
   margin-left: 0px;
-    margin-right: -29px;
-    /* background-color:#ffb3b3; */
-    border: solid 1px;
+    margin-right: 0px;
+   background-color:#cccccc;
 }
 
 #kiemtra-form{
@@ -370,6 +382,63 @@ font-weight: bold;
 }
 
 #themvaogio{
-  margin-top: 140px;
+  margin-top: 118px;
 }
 
+.title-search{
+  font-weight: bold;
+  color: black;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+
+#sl {
+  float: none;
+  margin-left: 1pc;
+}
+
+#price-gia{
+  float: right;
+}
+
+#logo{
+        font-weight: bold;
+    text-transform: uppercase;
+    font-family: georgia;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    letter-spacing: 20px;
+}
+.tengui{
+  margin-bottom: 10px;
+  height: 32px;
+}
+#gui{
+  padding-top: 10px;
+margin-left: -48px;
+}
+
+#qmk{
+  padding-right: 50px;
+  padding-top: 15px;
+}
+
+#dk{
+  padding-left: 50px;
+  padding-bottom: 10px;
+}
+
+#menu-user{
+  margin-right: 25px;
+}
+
+#gt{
+  text-align: center;
+  color: red;
+  font-size: 40px;
+
+}

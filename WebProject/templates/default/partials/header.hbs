@@ -1,4 +1,4 @@
-<header class="container ">
+<header >
 	<div id="header1">
 		<img style="float: left" src="/images/call.png">
 		<a id="call" style="float: left">
@@ -22,7 +22,7 @@
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li>
+				<li >
 					<a href="/user/profile/{{this._id}}">Thông tin Tài khoản</a>
 				</li>
 				<li>
@@ -35,7 +35,7 @@
 			<a id="account" href="" class="dropdown-toggle" data-toggle="dropdown"><img  src="/images/contact.png">{{this.tenKhachHang}}
 				<b class="caret"></b>
 			</a>
-			<ul class="dropdown-menu">
+			<ul  class="dropdown-menu">
 				<li>
 					<a href="/user/profile/{{this._id}}">Thông tin tài khoản</a>
 				</li>
@@ -51,11 +51,11 @@
 		{{/each}} 
 		{{else}}
 		<a id="login" style="float: right;" href="/user/signin">
-			<span style="color:#090909">Đăng nhập</span>
+			<span style="color:white">Đăng nhập</span>
 		</a>
 		<img style="float: right" src="/images/login.png">
 		<a id="contact" style="float: right;" href="/user/signup">
-			<span style="color:#090909">Đăng kí</span>
+			<span style="color:white">Đăng kí</span>
 		</a>
 		<img style="float: right" src="/images/contact.png"> {{/if}}
 	</div>
@@ -73,8 +73,8 @@
 			</form>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
-			<a href="index.html">
-				<img src="/images/logo5.png">
+			<a href="/">
+				<p id="logo"> HTEAM </p>
 			</a>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
@@ -88,3 +88,4 @@
 		</div>
 	</div>
 </header>
+

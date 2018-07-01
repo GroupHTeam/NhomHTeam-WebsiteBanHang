@@ -15,7 +15,6 @@ exports.danhsach_get = function(req, res, next) {
 	for(var i=0;i<docs.length;i += chunkSize){
       cartChunk.push(docs.slice(i, i+ chunkSize));
     }
-    console.log('thong tin order');
 		res.render('../admin/cart/list', {Orders: cartChunk , layout:'../../admin/layouts/layout.hbs'});
 	})
 }
@@ -50,13 +49,13 @@ exports.thanhtoan_get = function(req,res,next){
 	// })
 
 	order.updateOne({ID: req.params.id}, { $set: {status : 0}}, function (err, data) {
+		console.log(data);
         if (err) throw err;
         console.log(data.status);
         console.log('update success: ');
 
         res.redirect('/admin/cart/danh-sach.html') //, {title: "Thông tin giỏ hàng" , layout:'../../admin/layouts/layout.hbs' });
     })
-
 
 }
 

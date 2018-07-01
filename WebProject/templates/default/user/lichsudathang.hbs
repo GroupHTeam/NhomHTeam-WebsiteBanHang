@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <h1>LICH SU DAT HANG</h1>
+        <h1>lỊCH SỬ ĐẶT HÀNG</h1>
         {{# each orders}}
         <div class="panel panel-default">
             <div class="panel-body">
                 <ul class="list-group">
                     {{#each this.items}}
                     <li class="list-group-item">
-                        <span class="badge">${{this.gia}}</span>
+                        <span class="badge">{{this.gia}} VND</span>
                          {{this.item.tenSanPham}}  | {{this.qty}} San Pham
                     </li>
                     {{/each}}

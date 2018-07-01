@@ -8,9 +8,9 @@ var quanTriVien = require('../models/quanTriVien');
 
 exports.index = function(req, res, next) {
   var successMsg = req.flash('success')[0];
-  SanPham.find({maLoai: "A"},function(err, docs){
+  SanPham.find({},function(err, docs){
     var sanPhamChunks =[];
-    var chunkSize = 4;
+    var chunkSize = 8;
     for(var i=0;i<4;i += chunkSize){
       sanPhamChunks.push(docs.slice(i, i+ chunkSize));
     }
